@@ -24,7 +24,7 @@ class ReleaseTests(unittest.TestCase):
         path = Path(directory) / f"EasyMarks-{package.read_version()}.zip"
         with ZipFile(path, "w") as archive:
             for name in package.FILES:
-                archive.writestr(f"EasyMarks/{name}", (package.SOURCE / name).read_bytes())
+                archive.writestr(f"EasyMarks/{name}", package.source_file(name).read_bytes())
         return path
 
     def test_release_type_version_and_changelog_are_consistent(self):
@@ -54,14 +54,23 @@ class ReleaseTests(unittest.TestCase):
             with self.subTest(candidates=candidates), self.assertRaises(ValueError):
                 release.retail_version_id(candidates, "12.1.0")
 
-    def test_prepare_builds_runtime_only_without_network_or_credentials(self):
+    def test_prepare_builds_addon_and_license_without_network_or_credentials(self):
         with TemporaryDirectory() as directory, patch.object(release, "api_json") as api:
             root = Path(directory)
             (root / "CHANGELOG.md").write_bytes((package.ROOT / "CHANGELOG.md").read_bytes())
+            license_bytes = (package.ROOT / "LICENSE").read_bytes()
+            (root / "LICENSE").write_bytes(license_bytes)
             with patch.object(package, "ROOT", root), redirect_stdout(io.StringIO()):
                 release.main([])
                 archive = root / "dist" / f"EasyMarks-{package.read_version()}.zip"
                 package.verify_archive(archive)
+                with ZipFile(archive) as packaged:
+                    self.assertEqual(packaged.read("EasyMarks/LICENSE"), license_bytes)
+                    self.assertEqual(set(packaged.namelist()), {
+                        "EasyMarks/EasyMarks.toc", "EasyMarks/Errors.lua",
+                        "EasyMarks/Domain/Markers.lua", "EasyMarks/UI/Wheel.lua",
+                        "EasyMarks/Core.lua", "EasyMarks/Bindings.xml", "EasyMarks/LICENSE",
+                    })
                 expected = release.release_metadata(
                     (package.SOURCE / "EasyMarks.toc").read_text(encoding="utf-8"),
                     (root / "CHANGELOG.md").read_text(encoding="utf-8"))
@@ -106,10 +115,25 @@ class ReleaseTests(unittest.TestCase):
             archive = Path(directory) / "modified.zip"
             with ZipFile(archive, "w") as changed:
                 for name in package.FILES:
-                    content = (package.SOURCE / name).read_bytes()
+                    content = package.source_file(name).read_bytes()
                     changed.writestr(f"EasyMarks/{name}", content + b"changed" if name == "Core.lua" else content)
             with self.assertRaises(ValueError):
                 package.verify_archive(archive)
+
+    def test_missing_or_modified_license_never_reaches_upload_api(self):
+        with TemporaryDirectory() as directory, patch.object(release, "api_json") as api:
+            archive = Path(directory) / "invalid-license.zip"
+            for license_content in (None, b"modified license"):
+                with self.subTest(license_content=license_content):
+                    with ZipFile(archive, "w") as changed:
+                        for name in package.FILES:
+                            if name == "LICENSE" and license_content is None:
+                                continue
+                            content = license_content if name == "LICENSE" else package.source_file(name).read_bytes()
+                            changed.writestr(f"EasyMarks/{name}", content)
+                    with self.assertRaises(ValueError):
+                        release.upload(self.metadata(), archive, "123", "test-token")
+            api.assert_not_called()
 
     def test_upload_errors_are_not_retried_and_do_not_echo_response_secrets(self):
         error = HTTPError("https://wow.curseforge.com/api/test", 500, "test-token", {}, io.BytesIO(b"test-token"))

@@ -12,6 +12,7 @@ Los textos visibles propios del addon van en inglés, incluidos tooltips, atajos
 - Conservar cambios ajenos. La existencia del prototipo o un ZIP no demuestra aprobación ni aceptación del cambio.
 - Mantener tareas y evidencia coherentes. El plan vive en el destino de trabajo configurado en Team Harness; no crear estado de pipeline para este flujo.
 - La fuente se aloja en el repositorio público `valianx/EasyMarks`; Mario autorizó expresamente cambiar su visibilidad a público. GitHub Actions para CurseForge está preparado y el proyecto de autor ya fue creado. Falta registrar su enlace/ID, configurar credenciales y validar la primera subida; publicar el repositorio no publica automáticamente el addon en CurseForge.
+- El código y la documentación propios se distribuyen bajo MIT. Mantener LICENSE en la raíz y dentro del ZIP; no relicenciar materiales de terceros. CONTRIBUTING.md explica el flujo público y CODE_OF_CONDUCT.md las normas de participación.
 - CI comprueba y empaqueta cada push/PR. El flujo CurseForge ofrece preparación sin credenciales; la subida usa el ZIP validado, un tag coherente con el TOC y secretos solo en el paso de subida. No imprimir tokens, guardarlos en archivos ni repetir a ciegas una subida de resultado incierto.
 
 ## Código

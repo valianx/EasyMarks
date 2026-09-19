@@ -1,5 +1,12 @@
 # Cambios
 
+## 0.1.11-alpha
+
+- Licencia MIT para el código y la documentación propios; el ZIP incluye una copia del archivo LICENSE de la raíz.
+- Código de conducta y guía para reportar errores, probar el addon y enviar contribuciones desde GitHub.
+- Validación del paquete ampliada para rechazar licencias ausentes o modificadas antes de una subida.
+- Sin cambios en las acciones ni en la interfaz del addon; las pruebas reales pendientes siguen abiertas.
+
 ## 0.1.10-alpha
 
 - Rueda compacta: fondo de 232 a 200 y radio de botones de 80 a 68, alrededor de un 26 % menos de superficie cubierta.

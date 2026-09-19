@@ -1,6 +1,6 @@
 # Easy Marks
 
-Addon personal de World of Warcraft Retail / Midnight. Versión **0.1.10-alpha**. Los textos de la interfaz del addon están en inglés.
+Addon personal de World of Warcraft Retail / Midnight. Versión **0.1.11-alpha**. Los textos de la interfaz del addon están en inglés.
 
 Repositorio público: [valianx/EasyMarks](https://github.com/valianx/EasyMarks). GitHub Actions ejecuta las pruebas y genera el ZIP en cada push/PR. La subida a CurseForge está preparada y espera la configuración del proyecto de autor.
 
@@ -16,21 +16,21 @@ Para **limpiar**, pasa el cursor sobre un color: aparece una pequeña × en la e
 
 **Clear all**, en el centro, intenta retirar **todos los marcadores del suelo y todos los símbolos de unidades del grupo**, incluso sin objetivo seleccionado. Ambas formas de limpieza cancelan la selección pendiente, sin ping y sin cerrar la rueda. Pasar el cursor o arrastrar no borra nada; se mantienen los permisos nativos del grupo.
 
-Estado: **alpha instalada localmente; pendiente de probar dentro de WoW**. La copia de Mario está en `C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\EasyMarks`. Se contrastó la cabecera `120100` con Retail 12.1.0.69814. No se ha publicado en CurseForge.
+Estado: **alpha en desarrollo; pendiente de probar dentro de WoW**. La versión 0.1.11 añade la licencia al paquete; la última copia instalada localmente es 0.1.10-alpha. La copia de Mario está en `C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\EasyMarks`. Se contrastó la cabecera `120100` con Retail 12.1.0.69814. No se ha publicado en CurseForge.
 
 El trabajo continúa mediante Team Harness `spec`: [propuesta](openspec/changes/manual-ground-marks/proposal.md) aprobada y [tareas](openspec/changes/manual-ground-marks/tasks.md) con la validación manual pendiente. Las pruebas locales no sustituyen la aceptación dentro del cliente.
 
-Documentación del proyecto: [stack y arquitectura](docs/ARCHITECTURE.md), [cómo contribuir](CONTRIBUTING.md), [errores y diagnóstico](docs/DIAGNOSTICO.md) y [convenciones para agentes](AGENTS.md).
+Documentación del proyecto: [stack y arquitectura](docs/ARCHITECTURE.md), [cómo contribuir](CONTRIBUTING.md), [errores y diagnóstico](docs/DIAGNOSTICO.md) y [convenciones para agentes](AGENTS.md). Consulta también el [código de conducta](CODE_OF_CONDUCT.md) y la [licencia MIT](LICENSE).
 
 ## Instalar la versión local
 
-1. Extrae `dist/EasyMarks-0.1.10-alpha.zip` dentro de `World of Warcraft/_retail_/Interface/AddOns/`.
+1. Extrae `dist/EasyMarks-0.1.11-alpha.zip` dentro de `World of Warcraft/_retail_/Interface/AddOns/`.
 2. Comprueba que queda `Interface/AddOns/EasyMarks/EasyMarks.toc`, sin otra carpeta entre medio.
 3. Abre WoW y activa **Easy Marks** en la lista de addons. Si el juego ya estaba abierto y no lo detecta, vuelve a iniciarlo.
 4. Dentro del juego, haz **clic izquierdo en el icono EM junto al minimapa** para abrir o cerrar la rueda. Tiene letras centradas sobre fondo oscuro y borde dorado. No necesitas escribir comandos.
 5. Para terreno, elige el color con clic izquierdo y confirma en una zona despejada. Para unidades, selecciona un objetivo y haz clic derecho en el símbolo. Las acciones se ejecutan al soltar.
 
-También puedes copiar directamente la carpeta `addon/EasyMarks`. Después de editar código, vuelve a copiarla al juego y ejecuta `/reload`.
+También puedes copiar directamente la carpeta `addon/EasyMarks` y añadir dentro una copia del archivo `LICENSE` de la raíz. Después de editar código, vuelve a copiarla al juego y ejecuta `/reload`.
 
 Puedes asignar una tecla buscando **Easy Marks → Toggle marker wheel** en las opciones de asignación de teclas. Ese atajo y el icono del minimapa están preparados para usarse en combate. Como alternativa opcional, `/emarks` y `/easymarks` abren o cierran la rueda fuera de combate.
 
@@ -99,6 +99,6 @@ Referencias técnicas: [acciones seguras del cliente](https://github.com/Gethe/w
 
 ## Publicación
 
-La [guía de publicación](docs/PUBLICACION.md) explica cómo crear el proyecto de CurseForge, conectar su ID y token en GitHub, probar el flujo sin subir nada y activar publicaciones desde GitHub Releases. El [logo original](branding/easy-marks-curseforge.png) está preparado. Faltan completar la ficha, elegir licencia y comprobar el addon dentro del juego antes de distribuirlo.
+La [guía de publicación](docs/PUBLICACION.md) explica cómo crear el proyecto de CurseForge, conectar su ID y token en GitHub, probar el flujo sin subir nada y activar publicaciones desde GitHub Releases. El [logo original](branding/easy-marks-curseforge.png) está preparado. La ficha ya fue creada; faltan conectar su ID y token, confirmar la licencia MIT también en CurseForge y comprobar el addon dentro del juego antes de distribuirlo.
 
-Este proyecto tiene código propio y usa recursos incluidos en WoW. No contiene código copiado de FastMarks. Todavía no se ha elegido una licencia para distribuirlo públicamente.
+Este proyecto tiene código propio y usa recursos incluidos en WoW. No contiene código copiado de FastMarks. El código y la documentación propios se distribuyen bajo [MIT](LICENSE). Los materiales de terceros conservan sus [avisos y licencias](THIRD_PARTY_NOTICES.md); los recursos del juego pertenecen a sus respectivos titulares.

@@ -1,4 +1,4 @@
-"""Build runtime files only; does not install or publish anything."""
+"""Build runtime files and their license; does not install or publish anything."""
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 import re
@@ -7,7 +7,11 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "addon" / "EasyMarks"
 RUNTIME_FILES = ("Errors.lua", "Domain/Markers.lua", "UI/Wheel.lua", "Core.lua")
-FILES = ("EasyMarks.toc", *RUNTIME_FILES, "Bindings.xml")
+FILES = ("EasyMarks.toc", *RUNTIME_FILES, "Bindings.xml", "LICENSE")
+
+
+def source_file(name):
+    return ROOT / name if name == "LICENSE" else SOURCE / name
 
 
 def read_version():
@@ -25,7 +29,7 @@ def verify_archive(destination):
         if archive.testzip() is not None:
             raise ValueError("Corrupt addon ZIP")
         for name in FILES:
-            if archive.read(f"EasyMarks/{name}") != (SOURCE / name).read_bytes():
+            if archive.read(f"EasyMarks/{name}") != source_file(name).read_bytes():
                 raise ValueError(f"Packaged file differs from source: {name}")
 
 
@@ -37,14 +41,14 @@ def main():
         raise ValueError("Update the packaging allowlist to match the TOC")
     ET.parse(SOURCE / "Bindings.xml")
     for name in FILES:
-        if not (SOURCE / name).is_file():
+        if not source_file(name).is_file():
             raise FileNotFoundError(name)
 
     destination = ROOT / "dist" / f"EasyMarks-{version}.zip"
     destination.parent.mkdir(exist_ok=True)
     with ZipFile(destination, "w", ZIP_DEFLATED) as archive:
         for name in FILES:
-            archive.write(SOURCE / name, f"EasyMarks/{name}")
+            archive.write(source_file(name), f"EasyMarks/{name}")
     verify_archive(destination)
     print(f"Verified: {destination}")
     return destination

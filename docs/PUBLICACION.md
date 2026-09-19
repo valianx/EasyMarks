@@ -5,8 +5,8 @@ La fuente está en el repositorio público [valianx/EasyMarks](https://github.co
 ## Crear la ficha una vez
 
 1. Entrar en el [portal de autores](https://authors.curseforge.com/), crear un proyecto de **World of Warcraft → Addons** y comprobar el nombre **Easy Marks**.
-2. Usar [branding/easy-marks-curseforge.png](../branding/easy-marks-curseforge.png): PNG original de 1254 × 1254, unos 3 MB. Las imágenes deben cumplir las reglas del formulario; este diseño no utiliza archivos gráficos del juego. No anunciarlo como producto oficial de Blizzard.
-3. Añadir una descripción, categorías correspondientes a la coordinación del grupo y capturas reales. Elegir la licencia en el formulario; el proyecto todavía no tiene una licencia pública elegida.
+2. Usar [branding/easy-marks-curseforge.png](../branding/easy-marks-curseforge.png): PNG original de 1254 × 1254, unos 3 MB; es el archivo fuente del logo. El avatar que se suba debe tener 400 × 400 píxeles, según las [políticas de moderación](https://support.curseforge.com/support/solutions/articles/9000197279-moderation-policies). Las imágenes deben cumplir las reglas del formulario; este diseño no utiliza archivos gráficos del juego. No anunciarlo como producto oficial de Blizzard.
+3. Añadir una descripción, categorías correspondientes a la coordinación del grupo y capturas reales. Seleccionar MIT License en el formulario, coherente con LICENSE del repositorio. Si antes se eligió All Rights Reserved, actualizar ese campo antes de subir esta versión.
 4. Guardar el proyecto y copiar su **Project ID** numérico. No es el slug de la URL ni el ID de una versión de WoW.
 5. Generar un token en [API tokens del portal de autores](https://authors.curseforge.com/#/settings/api-tokens). No pegarlo en chat, código o capturas.
 
@@ -46,7 +46,7 @@ El workflow **Test and package** hace pruebas y ZIP en cada push/PR; sus artefac
 
 1. Comprobar el addon en WoW. Actualizar `## Version` del TOC y su sección exacta `## <version>` en `CHANGELOG.md`. Mantener `## Interface` en la versión Retail realmente probada.
 2. Subir el commit a `main` y esperar a que CI pase.
-3. Crear un tag `v<version>`: por ejemplo `v0.1.10-alpha` para TOC `0.1.10-alpha`. Crear y publicar una **GitHub Release** con ese tag. Marcarla como prerelease si es alpha/beta.
+3. Crear un tag `v<version>`: por ejemplo `v0.1.11-alpha` para TOC `0.1.11-alpha`. Crear y publicar una **GitHub Release** con ese tag. Marcarla como prerelease si es alpha/beta.
 4. Si `CURSEFORGE_ENABLED=true`, Actions prueba, prepara y sube el ZIP a CurseForge. Si la variable está ausente o es `false`, solo prepara artefactos.
 5. Revisar en la ejecución el recibo `curseforge-receipt.json`, con `fileId` y SHA-256; después revisar el estado de moderación en CurseForge.
 
@@ -56,7 +56,7 @@ También se puede subir con **Run workflow** seleccionando un tag existente y `p
 
 ## Paquete y API
 
-`tools/package.py` crea exclusivamente `EasyMarks/EasyMarks.toc`, `Errors.lua`, `Domain/Markers.lua`, `UI/Wheel.lua`, `Core.lua` y `Bindings.xml`. Ni logo, documentación, tests, `.git`, registros, SavedVariables ni credenciales entran en el ZIP. El cargador implícito de WoW recibe `Bindings.xml`; no se enumera en el TOC.
+`tools/package.py` crea exclusivamente `EasyMarks/EasyMarks.toc`, `Errors.lua`, `Domain/Markers.lua`, `UI/Wheel.lua`, `Core.lua`, `Bindings.xml` y una copia de `LICENSE` desde la raíz. Ni logo, documentación, tests, `.git`, registros, SavedVariables ni credenciales entran en el ZIP. El cargador implícito de WoW recibe `Bindings.xml`; no se enumera en el TOC.
 
 `tools/release.py` reutiliza ese ZIP y vuelve a contrastarlo con la fuente antes de subir. Sigue la [API de autores](https://support.curseforge.com/support/solutions/articles/9000197321) y los endpoints específicos WoW usados por [BigWigsMods/packager](https://github.com/BigWigsMods/packager/blob/master/release.sh): `https://wow.curseforge.com/api/game/wow/versions` y `/api/projects/{id}/upload-file`. Envía el token en una cabecera, resuelve el ID de la versión exacta con tipo Retail 517 y hace un POST multipart con metadatos y archivo. No infiere un ID ni elige otra versión como alternativa. La subida autenticada real queda pendiente hasta conectar el proyecto.
 

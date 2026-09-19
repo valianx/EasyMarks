@@ -1,6 +1,6 @@
 # Imagen para CurseForge
 
-`easy-marks-curseforge.png` es el logo original de Easy Marks para la ficha del proyecto: EM en metal dorado sobre piedra oscura, con un círculo y gemas que evocan el marcado táctico y la fantasía heroica. No se utilizaron imágenes de referencia ni archivos gráficos del juego. La aprobación definitiva de la imagen corresponde a CurseForge.
+`easy-marks-curseforge.png` es el logo original de Easy Marks para la ficha del proyecto: EM en metal dorado sobre piedra oscura, con un círculo y gemas que evocan el marcado táctico y la fantasía heroica. No se utilizaron imágenes de referencia ni archivos gráficos del juego. La imagen se distribuye bajo la [licencia MIT del proyecto](../LICENSE). La aprobación definitiva de la imagen corresponde a CurseForge.
 
 Creado el 19/09/2026 mediante la herramienta integrada de generación de imágenes. Se conserva fuera de `addon/`: no se añade peso a la instalación de WoW ni reemplaza el icono del minimapa.
 
