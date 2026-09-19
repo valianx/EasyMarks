@@ -2,7 +2,7 @@
 
 ## Proyecto y alcance
 
-Addon personal para WoW Retail/Midnight. Fuente en `C:\Users\mario\projects\EasyMarks`; el directorio `Interface/AddOns/EasyMarks` del juego es una copia para probar, no el lugar para desarrollar. Responder y documentar en español, con nombres de APIs e identificadores de código en su forma original.
+Addon personal para WoW Retail/Midnight. Fuente en `C:\Users\mario\projects\EasyMarks`; el directorio `Interface/AddOns/EasyMarks` del juego es una copia para probar, no el lugar para desarrollar. Responder en español. Mantener README.md breve y completamente en inglés; la documentación técnica restante se mantiene en español, con nombres de APIs e identificadores de código en su forma original.
 
 Los textos visibles propios del addon van en inglés, incluidos tooltips, atajos, chat, nombres de marcadores y visor de errores. Conservar el idioma original de errores históricos o recibidos del cliente; los comandos de WoW siguen usando sus nombres localizados.
 

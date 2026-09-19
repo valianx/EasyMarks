@@ -5,7 +5,7 @@ context: |
   El proyecto vive en C:/Users/mario/projects/EasyMarks.
   La primera alpha está instalada localmente; falta validarla dentro del juego.
   El cliente está en C:/Program Files (x86)/World of Warcraft/_retail_.
-  El usuario solicita trabajar mediante Team Harness spec, con documentación en español.
+  El usuario solicita trabajar mediante Team Harness spec, con documentación técnica en español y un README breve en inglés.
   El alcance inicial es marcar terreno manualmente con una rueda de colores y un ping.
   No hay backend. GitHub público valianx/EasyMarks y la preparación de Actions están autorizados.
   El proyecto CurseForge ya fue creado; faltan su ID, credenciales y validación real antes de publicar.

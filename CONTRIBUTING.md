@@ -40,7 +40,7 @@ En Linux/macOS utiliza `.venv/bin/python` en lugar de `.\.venv\Scripts\python.ex
 - Coloca reglas y datos puros en `Domain/Markers.lua`, integración con WoW en `UI/Wheel.lua`, arranque en `Core.lua` y diagnóstico en `Errors.lua`. Conserva módulos pequeños y evita capas sin una responsabilidad concreta.
 - Mantén las acciones protegidas vinculadas a una entrada manual. No automatices posiciones, decisiones de combate ni acciones protegidas mediante timers.
 - Conserva `Bindings.xml` fuera de la lista de carga del TOC: WoW tiene un cargador específico para atajos.
-- Mantén los textos propios de la interfaz en inglés. El código y los nombres de APIs usan sus identificadores originales; la documentación del proyecto está en español.
+- Mantén los textos propios de la interfaz en inglés. El código y los nombres de APIs usan sus identificadores originales; el README está en inglés y la documentación técnica detallada está en español.
 - No incluyas dependencias de ejecución ni código de otros addons sin revisar antes su licencia, atribución y necesidad. Las ideas de otros proyectos no autorizan copiar sus archivos.
 
 ## Verificar el cambio
