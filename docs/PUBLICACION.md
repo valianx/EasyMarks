@@ -1,6 +1,6 @@
 # Publicar Easy Marks
 
-La fuente está en el repositorio privado [valianx/EasyMarks](https://github.com/valianx/EasyMarks). El ZIP publicado en CurseForge será distribuible aunque GitHub permanezca privado. No se ha subido todavía ningún archivo a CurseForge: falta crear el proyecto, conectar sus credenciales y completar las pruebas reales.
+La fuente está en el repositorio público [valianx/EasyMarks](https://github.com/valianx/EasyMarks). Mario confirmó la creación del proyecto CurseForge; faltan su enlace/ID y credenciales para conectar Actions. La primera subida y las pruebas reales siguen pendientes de confirmación.
 
 ## Crear la ficha una vez
 
@@ -28,7 +28,7 @@ En el repositorio: **Settings → Secrets and variables → Actions**.
 | Repository variable | `CURSEFORGE_PROJECT_ID` | ID numérico del proyecto |
 | Repository variable | `CURSEFORGE_ENABLED` | `true` para subir automáticamente cuando se publique una GitHub Release |
 
-No hace falta un token personal de GitHub para estos workflows. La clave de autores es distinta de la API para terceros de CurseForge for Studios. No configurar simultáneamente el webhook de autoempaquetado de CurseForge: produciría otra ruta de publicación junto a Actions.
+No hace falta un token personal de GitHub para estos workflows. La clave de autores es distinta de la API para terceros de CurseForge for Studios. En Source Code se puede enlazar el repositorio público, manteniendo Automatic Packaging desactivado para usar Actions como única ruta de subida. No configurar simultáneamente el webhook de autoempaquetado de CurseForge: produciría otra ruta de publicación junto a Actions. El empaquetador de CurseForge requiere su propia configuración de webhook y PackageMeta para adaptar la carpeta addon/EasyMarks; hacer público el repositorio no crea ni sube tags. Véase [Automatic Packaging](https://support.curseforge.com/support/solutions/articles/9000197281).
 
 ## Probar sin publicar
 

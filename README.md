@@ -2,7 +2,7 @@
 
 Addon personal de World of Warcraft Retail / Midnight. Versión **0.1.10-alpha**. Los textos de la interfaz del addon están en inglés.
 
-Repositorio privado: [valianx/EasyMarks](https://github.com/valianx/EasyMarks). GitHub Actions ejecuta las pruebas y genera el ZIP en cada push/PR. La subida a CurseForge está preparada y espera la configuración del proyecto de autor.
+Repositorio público: [valianx/EasyMarks](https://github.com/valianx/EasyMarks). GitHub Actions ejecuta las pruebas y genera el ZIP en cada push/PR. La subida a CurseForge está preparada y espera la configuración del proyecto de autor.
 
 **Clic izquierdo en un símbolo:** apunta al terreno y haz clic para intentar colocar un marcador de mundo y enviar un ping de «Mira aquí» en el mismo lugar. **Cada selección sirve para marcar una sola vez**; después vuelve el cursor normal. Mientras seleccionas, el cursor lleva el símbolo del color, sin una ventana de instrucciones.
 

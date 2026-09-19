@@ -1,6 +1,6 @@
 # Cómo contribuir a Easy Marks
 
-El proyecto empieza como una alpha personal en [valianx/EasyMarks](https://github.com/valianx/EasyMarks), repositorio privado. La licencia de distribución sigue pendiente. Los cambios se desarrollan en la carpeta del proyecto; la copia instalada en WoW se utiliza para probarlos.
+El proyecto empieza como una alpha personal en [valianx/EasyMarks](https://github.com/valianx/EasyMarks), repositorio público. La licencia de distribución sigue pendiente. Los cambios se desarrollan en la carpeta del proyecto; la copia instalada en WoW se utiliza para probarlos.
 
 ## Entender el cambio
 
@@ -66,4 +66,4 @@ Para preparar una publicación sin token ni red: `python -m tools.release`. Para
 
 Indicar el problema observable, el comportamiento resultante, los archivos afectados y la verificación realizada. Un informe de error útil incluye versión de WoW, modo de juego, estado de combate, pasos, mensaje Lua y si falló la marca, el ping o ambos. Omitir datos personales innecesarios.
 
-Actualizar las instrucciones cuando cambie lo que hace el addon. No incluir credenciales, carpetas WTF ni código de terceros sin una licencia compatible. Subir código al repositorio privado no autoriza por sí solo una publicación en CurseForge; revisar la versión en juego y seguir el flujo de Releases acordado.
+Actualizar las instrucciones cuando cambie lo que hace el addon. No incluir credenciales, carpetas WTF ni código de terceros sin una licencia compatible. Subir código al repositorio público no autoriza por sí solo una publicación en CurseForge; revisar la versión en juego y seguir el flujo de Releases acordado.

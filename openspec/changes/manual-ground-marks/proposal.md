@@ -35,7 +35,7 @@ El código afectado está en `addon/EasyMarks`: Lua, metadatos TOC y atajos XML.
 
 Proyecto: `C:\Users\mario\projects\EasyMarks`. Tras aprobar el plan, destino local: `C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\EasyMarks`.
 
-La fuente estará en GitHub privado con Actions para pruebas y publicación preparada. Crear el proyecto CurseForge y su primera publicación quedan pendientes.
+La fuente está en GitHub público con Actions para pruebas y publicación preparada. El proyecto CurseForge fue creado; conectar credenciales y publicar siguen pendientes.
 
 ## Non-Goals
 
