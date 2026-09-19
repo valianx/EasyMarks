@@ -1,0 +1,11 @@
+## Interface: 120100
+## Title: Easy Marks
+## Notes: Mark and ping the ground or your selected target from one wheel.
+## Author: Mario
+## Version: 0.1.10-alpha
+## SavedVariables: EasyMarksDB
+
+Errors.lua
+Domain/Markers.lua
+UI/Wheel.lua
+Core.lua

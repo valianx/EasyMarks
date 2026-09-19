@@ -1,0 +1,63 @@
+name: CurseForge release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Upload to CurseForge (select a version tag; false only prepares files)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: curseforge-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name || (github.ref_type == 'tag' && github.ref_name || '') }}
+      PUBLISH: ${{ (github.event_name == 'release' && vars.CURSEFORGE_ENABLED == 'true') || inputs.publish == true }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Install test dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Run tests
+        run: python -B -m unittest discover -s tests -v
+      - name: Prepare verified ZIP and release metadata
+        id: prepare
+        run: python -m tools.release --tag "$RELEASE_TAG"
+      - name: Verify release commit belongs to main
+        if: env.PUBLISH == 'true'
+        run: git merge-base --is-ancestor HEAD origin/main
+      - name: Upload to CurseForge
+        if: env.PUBLISH == 'true'
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID }}
+        run: python -m tools.release --tag "$RELEASE_TAG" --publish
+      - name: Explain preview mode
+        if: env.PUBLISH != 'true'
+        run: echo 'Prepared only. CurseForge upload is disabled. See docs/PUBLICACION.md to connect the project and enable releases.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always() && steps.prepare.outcome == 'success'
+        with:
+          name: EasyMarks-release-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            dist/EasyMarks-*.zip
+            dist/curseforge-*.json
+          if-no-files-found: error
+          retention-days: 30

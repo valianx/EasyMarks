@@ -1,0 +1,28 @@
+schema: spec-driven
+
+context: |
+  Easy Marks es un addon personal de WoW Retail/Midnight, escrito en Lua y XML.
+  El proyecto vive en C:/Users/mario/projects/EasyMarks.
+  La primera alpha está instalada localmente; falta validarla dentro del juego.
+  El cliente está en C:/Program Files (x86)/World of Warcraft/_retail_.
+  El usuario solicita trabajar mediante Team Harness spec, con documentación en español.
+  El alcance inicial es marcar terreno manualmente con una rueda de colores y un ping.
+  No hay backend. GitHub privado valianx/EasyMarks y la preparación de Actions están autorizados.
+  Falta crear el proyecto CurseForge y validar el addon en juego antes de su primera publicación.
+
+rules:
+  proposal:
+    - Keep the proposal under 500 words and include a Non-Goals section.
+    - Declare observable product capabilities; distinguish the existing prototype from accepted behavior.
+  tasks:
+    - Keep the task list at 20 items or fewer, with independently verifiable results.
+    - Do not mark in-game scenarios complete using only mocks or syntax checks.
+  specs:
+    - Keep requirements observable and include WHEN/THEN acceptance scenarios.
+
+team_harness:
+  max_requirements_per_change: 12
+  proposal_max_words: 500
+  proposal_required_sections:
+    - Non-Goals
+  tasks_max_items: 20
