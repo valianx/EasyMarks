@@ -1,5 +1,12 @@
 # Cambios
 
+## 0.1.11
+
+- Versión 0.1.11 sin sufijo alpha; el paquete se prepara con tipo release.
+- Metadatos de compatibilidad para WoW 12.1.5 (Interface 120105).
+- README breve en inglés sin números de versión; las versiones se declaran en el TOC y en los metadatos de publicación.
+- Se conserva el comportamiento de 0.1.11-alpha; las comprobaciones dentro del juego siguen pendientes.
+
 ## 0.1.11-alpha
 
 - Licencia MIT para el código y la documentación propios; el ZIP incluye una copia del archivo LICENSE de la raíz.

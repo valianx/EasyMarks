@@ -2,7 +2,7 @@
 
 Gracias por ayudar a mejorar Easy Marks. Puedes reportar errores, proponer mejoras, probar el addon en WoW o enviar código y documentación. Aceptamos issues y pull requests en español o inglés; los textos visibles del addon permanecen en inglés.
 
-El proyecto está en fase alpha. Lee el [README](README.md), el [código de conducta](CODE_OF_CONDUCT.md) y la [arquitectura](docs/ARCHITECTURE.md) antes de empezar. La licencia aplicable está en [LICENSE](LICENSE); conserva los [avisos de terceros](THIRD_PARTY_NOTICES.md) que correspondan.
+Lee el [README](README.md), el [código de conducta](CODE_OF_CONDUCT.md) y la [arquitectura](docs/ARCHITECTURE.md) antes de empezar. La licencia aplicable está en [LICENSE](LICENSE); conserva los [avisos de terceros](THIRD_PARTY_NOTICES.md) que correspondan.
 
 ## Reportar errores y proponer mejoras
 

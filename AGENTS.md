@@ -2,7 +2,7 @@
 
 ## Proyecto y alcance
 
-Addon personal para WoW Retail/Midnight. Fuente en `C:\Users\mario\projects\EasyMarks`; el directorio `Interface/AddOns/EasyMarks` del juego es una copia para probar, no el lugar para desarrollar. Responder en español. Mantener README.md breve y completamente en inglés; la documentación técnica restante se mantiene en español, con nombres de APIs e identificadores de código en su forma original.
+Addon personal para WoW Retail/Midnight. Fuente en `C:\Users\mario\projects\EasyMarks`; el directorio `Interface/AddOns/EasyMarks` del juego es una copia para probar, no el lugar para desarrollar. Responder en español. Mantener README.md breve, completamente en inglés y sin números de versión del addon o de WoW; la documentación técnica restante se mantiene en español, con nombres de APIs e identificadores de código en su forma original.
 
 Los textos visibles propios del addon van en inglés, incluidos tooltips, atajos, chat, nombres de marcadores y visor de errores. Conservar el idioma original de errores históricos o recibidos del cliente; los comandos de WoW siguen usando sus nombres localizados.
 
@@ -11,7 +11,7 @@ Los textos visibles propios del addon van en inglés, incluidos tooltips, atajos
 - Seguir Team Harness `spec`. Leer el cambio activo en `openspec/changes/` y las especificaciones vigentes antes de modificar comportamiento.
 - Conservar cambios ajenos. La existencia del prototipo o un ZIP no demuestra aprobación ni aceptación del cambio.
 - Mantener tareas y evidencia coherentes. El plan vive en el destino de trabajo configurado en Team Harness; no crear estado de pipeline para este flujo.
-- La fuente se aloja en el repositorio público `valianx/EasyMarks`; Mario autorizó expresamente cambiar su visibilidad a público. GitHub Actions para CurseForge está preparado y el proyecto de autor ya fue creado. Falta registrar su enlace/ID, configurar credenciales y validar la primera subida; publicar el repositorio no publica automáticamente el addon en CurseForge.
+- La fuente se aloja en el repositorio público `valianx/EasyMarks`; Mario autorizó expresamente cambiar su visibilidad a público. El proyecto de autor ya fue creado y Mario eligió el empaquetador nativo de CurseForge por tags. Falta registrar su enlace/ID y validar su configuración y el primer archivo. La alternativa de subida por Actions sigue desactivada; publicar el repositorio no publica automáticamente el addon en CurseForge.
 - El código y la documentación propios se distribuyen bajo MIT. Mantener LICENSE en la raíz y dentro del ZIP; no relicenciar materiales de terceros. CONTRIBUTING.md explica el flujo público y CODE_OF_CONDUCT.md las normas de participación.
 - CI comprueba y empaqueta cada push/PR. El flujo CurseForge ofrece preparación sin credenciales; la subida usa el ZIP validado, un tag coherente con el TOC y secretos solo en el paso de subida. No imprimir tokens, guardarlos en archivos ni repetir a ciegas una subida de resultado incierto.
 

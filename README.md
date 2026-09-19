@@ -2,7 +2,7 @@
 
 A compact, movable marking wheel for **World of Warcraft Retail / Midnight**. Mark ground positions or your selected target, send attention pings, and clear markers from one place.
 
-**Early alpha.** Marking is manual and follows the game's permissions and instance restrictions. Combat and instance-specific behavior still need in-game validation. Other players do not need the addon to see native markers and pings.
+Marking is manual and follows the game's permissions and instance restrictions. Combat and instance-specific behavior still need in-game validation. Other players do not need the addon to see native markers and pings.
 
 ## Installation
 

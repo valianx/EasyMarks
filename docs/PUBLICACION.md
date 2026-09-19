@@ -1,6 +1,6 @@
 # Publicar Easy Marks
 
-La fuente está en el repositorio público [valianx/EasyMarks](https://github.com/valianx/EasyMarks). Mario confirmó la creación del proyecto CurseForge; faltan su enlace/ID y credenciales para conectar Actions. La primera subida y las pruebas reales siguen pendientes de confirmación.
+La fuente está en el repositorio público [valianx/EasyMarks](https://github.com/valianx/EasyMarks). Mario creó el proyecto CurseForge y eligió su empaquetador nativo para publicar tags. Falta confirmar la conexión y el primer archivo generado. GitHub Actions se conserva para pruebas y preparación; la subida por API sigue desactivada.
 
 ## Crear la ficha una vez
 
@@ -8,7 +8,7 @@ La fuente está en el repositorio público [valianx/EasyMarks](https://github.co
 2. Usar [branding/easy-marks-curseforge.png](../branding/easy-marks-curseforge.png): PNG original de 1254 × 1254, unos 3 MB; es el archivo fuente del logo. El avatar que se suba debe tener 400 × 400 píxeles, según las [políticas de moderación](https://support.curseforge.com/support/solutions/articles/9000197279-moderation-policies). Las imágenes deben cumplir las reglas del formulario; este diseño no utiliza archivos gráficos del juego. No anunciarlo como producto oficial de Blizzard.
 3. Añadir una descripción, categorías correspondientes a la coordinación del grupo y capturas reales. Seleccionar MIT License en el formulario, coherente con LICENSE del repositorio. Si antes se eligió All Rights Reserved, actualizar ese campo antes de subir esta versión.
 4. Guardar el proyecto y copiar su **Project ID** numérico. No es el slug de la URL ni el ID de una versión de WoW.
-5. Generar un token en [API tokens del portal de autores](https://authors.curseforge.com/#/settings/api-tokens). No pegarlo en chat, código o capturas.
+5. Solo si se elige la alternativa de subida por API, generar un token en [API tokens del portal de autores](https://authors.curseforge.com/#/settings/api-tokens). No pegarlo en chat, código o capturas.
 
 La ficha y los archivos requieren moderación. No volver a subir un archivo que siga bajo revisión manual. Las versiones alpha no tienen la misma visibilidad en la app que beta/release; para que un proyecto nuevo sincronice con la app hace falta una beta o release aprobada. Fuentes: [envío de proyectos](https://support.curseforge.com/support/solutions/articles/9000199552-project-submission-guide-and-tips), [estados de archivos y proyectos](https://support.curseforge.com/support/solutions/articles/9000197242), [revisión de archivos](https://support.curseforge.com/support/solutions/articles/9000197905).
 
@@ -18,7 +18,21 @@ Descripción inicial en inglés:
 
 No anunciar compatibilidad específica con arenas o míticas+ hasta registrar los resultados en [PRUEBAS.md](PRUEBAS.md).
 
-## Conectar GitHub Actions
+## Compatibilidad de WoW
+
+El TOC declara `## Interface: 120105`, correspondiente a WoW Retail 12.1.5. La versión del addon (`## Version: 0.1.11`) es independiente. En el formulario de cada archivo en CurseForge, seleccionar Retail y 12.1.5 en **Game Versions / Supported Version**; [CurseForge permite indicar las versiones compatibles del archivo](https://support.curseforge.com/support/solutions/articles/9000197242).
+
+El README no muestra números de versión; la compatibilidad se declara en el TOC y en los campos de cada archivo en CurseForge. `tools/release.py` deriva `gameVersionNames: ["12.1.5"]` del TOC y resuelve el ID Retail exacto al subir por API. 12.1.5 es la versión de destino declarada por el mantenedor; la validación dentro de ese cliente sigue pendiente. Cambiar el número del TOC no sustituye esa comprobación. Las pruebas de combate e instancias pendientes están en [PRUEBAS.md](PRUEBAS.md).
+
+## Empaquetado nativo de CurseForge
+
+Es la ruta elegida para publicar desde tags: enlazar `https://github.com/valianx/EasyMarks` y seleccionar el empaquetado de commits etiquetados en **Source Code → Automatic Packaging**. No requiere una Action de subida ni crear una GitHub Release. El tag `v0.1.11`, sin alpha/beta, corresponde al canal Release.
+
+Antes de dar por conectada esta ruta, comprobar el webhook y su entrega en GitHub, preparar `.pkgmeta` para convertir `addon/EasyMarks` en la carpeta instalable `EasyMarks`, y revisar el archivo generado en CurseForge. El repositorio aún no incluye esa configuración del empaquetador; el ZIP local de `tools/package.py` ya tiene la estructura instalable correcta. Véanse [Automatic Packaging](https://support.curseforge.com/support/solutions/articles/9000197281) y [PackageMeta](https://support.curseforge.com/support/solutions/articles/9000197952-preparing-the-packagemeta-file).
+
+Mantener `CURSEFORGE_ENABLED=false` mientras se use el empaquetador nativo, para evitar dos rutas de subida. El aviso de moderación limita la visibilidad y sincronización del proyecto; no indica un fallo de compatibilidad. En **Files**, comprobar que el resultado indique Retail, 12.1.5 y Release.
+
+## Alternativa: conectar GitHub Actions
 
 En el repositorio: **Settings → Secrets and variables → Actions**.
 
@@ -42,11 +56,11 @@ python -m tools.release
 
 El workflow **Test and package** hace pruebas y ZIP en cada push/PR; sus artefactos duran 14 días. Los de preparación/publicación duran 30 días. Al descargarlos desde Actions, extraer el ZIP exterior del artefacto para encontrar el ZIP instalable `EasyMarks-<version>.zip`.
 
-## Publicar una versión
+## Publicar una versión mediante la alternativa de Actions
 
-1. Comprobar el addon en WoW. Actualizar `## Version` del TOC y su sección exacta `## <version>` en `CHANGELOG.md`. Mantener `## Interface` en la versión Retail realmente probada.
+1. Comprobar el addon en WoW. Actualizar `## Version` del TOC y su sección exacta `## <version>` en `CHANGELOG.md`. Mantener `## Interface` coherente con la versión de destino y registrar por separado las pruebas realizadas en el cliente.
 2. Subir el commit a `main` y esperar a que CI pase.
-3. Crear un tag `v<version>`: por ejemplo `v0.1.11-alpha` para TOC `0.1.11-alpha`. Crear y publicar una **GitHub Release** con ese tag. Marcarla como prerelease si es alpha/beta.
+3. Crear un tag `v<version>`: por ejemplo `v0.1.11` para TOC `0.1.11`. Crear y publicar una **GitHub Release** con ese tag. Marcarla como prerelease si es alpha/beta.
 4. Si `CURSEFORGE_ENABLED=true`, Actions prueba, prepara y sube el ZIP a CurseForge. Si la variable está ausente o es `false`, solo prepara artefactos.
 5. Revisar en la ejecución el recibo `curseforge-receipt.json`, con `fileId` y SHA-256; después revisar el estado de moderación en CurseForge.
 
